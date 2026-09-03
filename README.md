@@ -7,9 +7,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Java](https://img.shields.io/badge/Java-21%2B-orange.svg)](https://adoptium.net/)
 [![Paper](https://img.shields.io/badge/Paper-1.21.11%2B-blue.svg)](https://papermc.io/)
-[![GitHub release](https://img.shields.io/github/v/release/SkyDynamics/CoinAPI)](https://github.com/SkyDynamics/CoinAPI/releases)
-[![GitHub issues](https://img.shields.io/github/issues/SkyDynamics/CoinAPI)](https://github.com/SkyDynamics/CoinAPI/issues)
-[![GitHub stars](https://img.shields.io/github/stars/SkyDynamics/CoinAPI?style=social)](https://github.com/SkyDynamics/CoinAPI/stargazers)
+[![GitHub release](https://img.shields.io/github/v/release/SkyDynamics/CoinAPI)](https://github.com/MarcoHeckmann/Coinix-CoinAPI/releases)
+[![GitHub issues](https://img.shields.io/github/issues/SkyDynamics/CoinAPI)](https://github.com/MarcoHeckmann/Coinix-CoinAPI/issues)
+[![GitHub stars](https://img.shields.io/github/stars/SkyDynamics/CoinAPI?style=social)](https://github.com/MarcoHeckmann/Coinix-CoinAPI/stargazers) 
 
 </div>
 
