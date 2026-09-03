@@ -1,0 +1,37 @@
+#########################
+# Messages.yml
+##########################
+
+# %prefix%     = The plugin prefix defined below
+# %balance%    = The player's current coin balance
+# %amount%     = The amount of coins
+# %sender%     = The player who executed the command
+# %receiver%   = The player who receives the coins
+# %target%     = The target player (used in /coins get)
+# %permission% = The required permission node
+
+prefix: "§8[§a§lCoinix§8] §7"
+
+errors:
+  use-numbers: "%prefix%Please enter a valid number."
+  under-zero: "%prefix%The amount must be §a0§7 or higher."
+  too-much-decimal-places: "%prefix%The amount can only have up to §a2§7 decimal places."
+  target-not-found: "%prefix%That player is not online."
+  wrong-args: "%prefix%Wrong usage. Check the command syntax."
+  no-permission: "%prefix%You don't have the permission §a%permission%§7."
+
+coins:
+  self-coins: "%prefix%You have §a%balance%§7$"
+  add:
+    sender: "%prefix%You added §a%amount%§7$ to §a%receiver%§7."
+    receiver: "%prefix%§a%sender%§7 added §a%amount%§7$ to your account. New balance: §a%balance%§7$"
+  remove:
+    sender: "%prefix%You removed §a%amount%§7$ from §a%receiver%§7."
+    receiver: "%prefix%§a%sender%§7 removed §a%amount%§7$ from your account. New balance: §a%balance%§7$"
+  get: "%prefix%§a%target%§7 has §a%balance%§7$"
+  set:
+    sender: "%prefix%You set §a%receiver%'s§7 balance to §a%amount%§7$."
+    receiver: "%prefix%§a%sender%§7 set your balance to §a%amount%§7$."
+  reset:
+    sender: "%prefix%You reset §a%receiver%'s§7 balance."
+    receiver: "%prefix%§a%sender%§7 reset your balance. New balance: §a%balance%§7$"

@@ -1,0 +1,10 @@
+#########################
+# Database Config -> MySQL
+##########################
+
+host: #Host of your Database Service
+port: #Port of your Database
+database: #Name of your Database
+username: #Username of your Database
+password: #Password of your Database
+max-pool-size: #Maximum allowed Connections (Max-Pool-Size)

@@ -1,0 +1,10 @@
+name: CoinAPI
+version: '1.0'
+author: SkyDynamics
+
+main: jp.softrain.coinAPI.Main
+api-version: '1.21.11'
+load: POSTWORLD
+
+commands:
+  coins:
