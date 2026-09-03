@@ -46,7 +46,7 @@
 
 ## 🚀 Installation
 
-1. Download the latest JAR from the [Releases](https://github.com/SkyDynamics/CoinAPI/releases) page
+1. Download the latest JAR from the [Releases](https://github.com/MarcoHeckmann/Coinix-CoinAPI/releases/) page
 2. Place the JAR file into your server's `plugins/` folder
 3. Start the server once so the plugin generates its default `database.yml` and `messages.yml` files
 4. Stop the server and configure your MySQL connection in `plugins/CoinAPI/database.yml`
@@ -126,7 +126,7 @@ Contributions are welcome! If you'd like to contribute:
 4. Push to the branch (`git push origin feature/my-feature`)
 5. Open a Pull Request
 
-Please open an [issue](https://github.com/SkyDynamics/CoinAPI/issues) first for major changes or to report bugs.
+Please open an [issue](https://github.com/MarcoHeckmann/Coinix-CoinAPI/issues) first for major changes or to report bugs.
 
 ## 📄 License
 
@@ -136,6 +136,6 @@ This project is licensed under the [MIT License](LICENSE).
 
 <div align="center">
 
-Made with ❤️ by [SkyDynamics](https://github.com/SkyDynamics)
+Made with ❤️ by [SkyDynamics](https://github.com/MarcoHeckmann)
 
 </div>
