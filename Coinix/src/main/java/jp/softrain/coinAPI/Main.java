@@ -1,5 +1,6 @@
 package jp.softrain.coinAPI;
 
+import jp.softrain.coinAPI.api.CoinAPI;
 import jp.softrain.coinAPI.commands.CoinsCommand;
 import jp.softrain.coinAPI.database.DatabaseManager;
 import jp.softrain.coinAPI.managers.DatabaseConfig;
@@ -23,6 +24,8 @@ public final class Main extends JavaPlugin {
         databaseManager = new DatabaseManager(this);
         messageManager = new MessageManager(this);
         messageManager.setup();
+
+        new CoinAPI(this); // Initialisiert die statische API-Instanz für andere Plugins
 
         if(instance.getDatabaseManager().getConnection() != null){
             Bukkit.getConsoleSender().sendMessage("§aDatabase Connected §b[✅]");
