@@ -7,9 +7,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Java](https://img.shields.io/badge/Java-21%2B-orange.svg)](https://adoptium.net/)
 [![Paper](https://img.shields.io/badge/Paper-1.21.11%2B-blue.svg)](https://papermc.io/)
-[![GitHub release](https://img.shields.io/github/v/release/SkyDynamics/CoinAPI)](https://github.com/MarcoHeckmann/Coinix-CoinAPI/releases)
-[![GitHub issues](https://img.shields.io/github/issues/SkyDynamics/CoinAPI)](https://github.com/MarcoHeckmann/Coinix-CoinAPI/issues)
-[![GitHub stars](https://img.shields.io/github/stars/SkyDynamics/CoinAPI?style=social)](https://github.com/MarcoHeckmann/Coinix-CoinAPI/stargazers) 
+[![GitHub release](https://img.shields.io/github/v/release/MarcoHeckmann/Coinix-CoinAPI)](https://github.com/MarcoHeckmann/Coinix-CoinAPI/releases)
+[![GitHub issues](https://img.shields.io/github/issues/MarcoHeckmann/Coinix-CoinAPI)](https://github.com/MarcoHeckmann/Coinix-CoinAPI/issues)
+[![GitHub stars](https://img.shields.io/github/stars/MarcoHeckmann/Coinix-CoinAPI?style=social)](https://github.com/MarcoHeckmann/Coinix-CoinAPI/stargazers)
 
 </div>
 
@@ -23,6 +23,7 @@
 - [Commands](#-commands)
 - [Permissions](#-permissions)
 - [Configuration](#-configuration)
+- [API for Developers](#-api-for-developers)
 - [Building from Source](#-building-from-source)
 - [Contributing](#-contributing)
 - [License](#-license)
@@ -35,6 +36,7 @@
 - 🗄️ MySQL database support powered by HikariCP connection pooling
 - 📝 Fully customizable messages via `messages.yml`
 - 🔤 Placeholder support in all plugin messages
+- 🧩 Simple static API for other plugins to read/modify balances
 
 ## 📋 Requirements
 
@@ -46,7 +48,7 @@
 
 ## 🚀 Installation
 
-1. Download the latest JAR from the [Releases](https://github.com/MarcoHeckmann/Coinix-CoinAPI/releases/) page
+1. Download the latest JAR from the [Releases](https://github.com/MarcoHeckmann/Coinix-CoinAPI/releases) page
 2. Place the JAR file into your server's `plugins/` folder
 3. Start the server once so the plugin generates its default `database.yml` and `messages.yml` files
 4. Stop the server and configure your MySQL connection in `plugins/CoinAPI/database.yml`
@@ -105,6 +107,56 @@ All plugin messages can be fully customized, including the prefix. The following
 | `%receiver%` | The player who receives the coins |
 | `%target%` | The target player (used in `/coins get`) |
 | `%permission%` | The required permission node |
+
+## 🧩 API for Developers
+
+Coinix CoinAPI exposes a simple static API so other plugins can read and modify player balances directly.
+
+### Add as a dependency
+
+Add CoinAPI as a `depend` (or `softdepend`) in your plugin's `plugin.yml` so it loads before yours:
+
+```yaml
+depend: [CoinAPI]
+```
+
+### Usage
+
+```java
+import jp.softrain.coinAPI.api.CoinAPI;
+import java.math.BigDecimal;
+import java.util.UUID;
+
+UUID uuid = player.getUniqueId();
+
+BigDecimal balance = CoinAPI.getBalance(uuid);
+CoinAPI.addCoins(uuid, new BigDecimal("100.00"));
+CoinAPI.removeCoins(uuid, new BigDecimal("50.00"));
+CoinAPI.setBalance(uuid, new BigDecimal("0.00"));
+CoinAPI.resetBalance(uuid);
+```
+
+> ⚠️ **Warning:** These methods perform blocking database calls. Do **not** call them on the main server thread — wrap calls in `Bukkit.getScheduler().runTaskAsynchronously(...)`:
+
+```java
+Bukkit.getScheduler().runTaskAsynchronously(myPlugin, () -> {
+    BigDecimal balance = CoinAPI.getBalance(uuid);
+
+    Bukkit.getScheduler().runTask(myPlugin, () -> {
+        player.sendMessage("Balance: " + balance);
+    });
+});
+```
+
+### Available methods
+
+| Method | Description |
+|---|---|
+| `CoinAPI.getBalance(UUID uuid)` | Returns the player's current balance |
+| `CoinAPI.addCoins(UUID uuid, BigDecimal amount)` | Adds coins to the player's balance |
+| `CoinAPI.removeCoins(UUID uuid, BigDecimal amount)` | Removes coins from the player's balance |
+| `CoinAPI.setBalance(UUID uuid, BigDecimal amount)` | Sets the player's balance to an exact value |
+| `CoinAPI.resetBalance(UUID uuid)` | Resets the player's balance to 0 |
 
 ## 🛠️ Building from Source
 
