@@ -3,6 +3,7 @@ package jp.softrain.coinAPI;
 import jp.softrain.coinAPI.api.CoinAPI;
 import jp.softrain.coinAPI.commands.CoinsCommand;
 import jp.softrain.coinAPI.database.DatabaseManager;
+import jp.softrain.coinAPI.listeners.JoinListener;
 import jp.softrain.coinAPI.managers.DatabaseConfig;
 import jp.softrain.coinAPI.managers.MessageManager;
 import org.bukkit.Bukkit;
@@ -31,6 +32,8 @@ public final class Main extends JavaPlugin {
             Bukkit.getConsoleSender().sendMessage("§aDatabase Connected §b[✅]");
         }
         getCommand("coins").setExecutor(new CoinsCommand(this));
+
+        Bukkit.getPluginManager().registerEvents(new JoinListener(this),this);
         // Plugin startup logic
     }
 

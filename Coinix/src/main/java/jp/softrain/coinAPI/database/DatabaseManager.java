@@ -76,6 +76,39 @@ public class DatabaseManager {
         }
 
     }
+    //IsRegistered
+    public boolean isRegistered(UUID uuid) {
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT 1 FROM coins WHERE uuid = ?")) {
+
+            preparedStatement.setString(1, uuid.toString());
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()){
+                return true;
+            }
+        } catch (SQLException e){
+            instance.getLogger().severe(e.getMessage());
+        }
+        return false;
+    }
+
+    //InitializePlayer
+
+    public void initializePlayer(UUID uuid){
+        try (Connection connection = dataSource.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO coins(uuid, balance) VALUES (?,?)")){
+
+            preparedStatement.setString(1, uuid.toString());
+            preparedStatement.setBigDecimal(2,new BigDecimal(0.00));
+
+            preparedStatement.executeUpdate();
+        }catch (SQLException e){
+            instance.getLogger().severe(e.getMessage());
+        }
+    }
+
     //RemoveMoney
     public void removeMoney(UUID uuid, BigDecimal amount){
         try (Connection connection = dataSource.getConnection();

@@ -12,6 +12,14 @@ public class CoinAPI {
             this.instance = instance;
         }
 
+        public static boolean isRegistered(UUID uuid){
+            return instance.getDatabaseManager().isRegistered(uuid);
+        }
+
+        public void initializePlayer(UUID uuid){
+            instance.getDatabaseManager().initializePlayer(uuid);
+        }
+
         public static BigDecimal getBalance(UUID uuid){
             return instance.getDatabaseManager().getMoney(uuid);
         }
