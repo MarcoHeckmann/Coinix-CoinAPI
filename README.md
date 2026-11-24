@@ -163,10 +163,11 @@ Bukkit.getScheduler().runTaskAsynchronously(myPlugin, () -> {
 Make sure you have [Maven](https://maven.apache.org/) and Java 21+ installed, then run:
 
 ```bash
+cd Coinix
 mvn clean package
 ```
 
-The compiled JAR will be located in the `target/` folder.
+The compiled JAR will be located in `Coinix/target/`.
 
 ## 🤝 Contributing
 
